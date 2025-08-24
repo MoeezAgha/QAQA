@@ -1,0 +1,39 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+<button @onclick="PushPopUp">Push PopUp</button>
+<button @onclick="PopPage">Pop Page</button>
+<button @onclick="GoToPopUp">GoTo PopUp (Route)</button>
+
+@code {
+    private async Task PushPopUp()
+    {
+        var shell = Application.Current.MainPage as Shell;
+        if (shell != null)
+        {
+                        await shell.Navigation.PushAsync(new QAQA.Components.Pages.PopUpPage2("Hello from Home!"));
+
+            //await shell.Navigation.PushAsync(new QAQA.Components.Pages.PopUpPage2());
+        }
+    }
+
+    private async Task PopPage()
+    {
+        var shell = Application.Current.MainPage as Shell;
+        if (shell != null && shell.Navigation.NavigationStack.Count > 1)
+        {
+            await shell.Navigation.PopAsync();
+        }
+    }
+
+    private async Task GoToPopUp()
+    {
+        var shell = Application.Current.MainPage as Shell;
+        if (shell != null)
+        {
+            // Navigate using Shell route
+            await shell.GoToAsync("popup");
+        }
+    }
+}

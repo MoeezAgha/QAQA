@@ -1,0 +1,24 @@
+﻿@page "/counter"
+@inject IServiceProvider Services
+@inject NavigationManager Navigation
+<h1>Counter Page</h1>
+<p>Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<button @onclick="GoBack">Go Back</button>
+
+@code {
+    private void GoBack()
+    {
+        var shell = Services.GetService(typeof(Microsoft.Maui.Controls.Shell)) as Microsoft.Maui.Controls.Shell;
+        shell?.CurrentPage?.Navigation.PopAsync();
+    }
+}
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

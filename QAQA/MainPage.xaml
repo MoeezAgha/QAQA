@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:QAQA"
+             xmlns:components="clr-namespace:QAQA.Components"
+                           xmlns:local1="clr-namespace:QAQA.Components.Pages"
+
+             x:Class="QAQA.MainPage">
+
+    <TabBar>
+        <ShellContent  Title="Home" Icon="home.png">
+            <ContentPage>
+                <BlazorWebView HostPage="wwwroot/index.html">
+                    <BlazorWebView.RootComponents>
+                        <RootComponent Selector="#app" ComponentType="{x:Type local1:Home}" />
+                    </BlazorWebView.RootComponents>
+                </BlazorWebView>
+            </ContentPage>
+        </ShellContent>
+
+        <ShellContent Title="Counter" Icon="counter.png">
+            <ContentPage>
+                <BlazorWebView HostPage="wwwroot/index.html">
+                    <BlazorWebView.RootComponents>
+                        <RootComponent Selector="#app" ComponentType="{x:Type local1:Counter}" />
+                    </BlazorWebView.RootComponents>
+                </BlazorWebView>
+            </ContentPage>
+        </ShellContent>
+    </TabBar>
+    </Shell>
