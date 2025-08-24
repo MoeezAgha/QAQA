@@ -12,28 +12,58 @@
         var shell = Application.Current.MainPage as Shell;
         if (shell != null)
         {
-                        await shell.Navigation.PushAsync(new QAQA.Components.Pages.PopUpPage2("Hello from Home!"));
-
-            //await shell.Navigation.PushAsync(new QAQA.Components.Pages.PopUpPage2());
+            // Navigation with constructor
+            await shell.Navigation.PushAsync(
+                new QAQA.Components.Pages.PopUpPage2("Hello from PushAsync!")
+            );
         }
     }
 
     private async Task PopPage()
     {
-        var shell = Application.Current.MainPage as Shell;
-        if (shell != null && shell.Navigation.NavigationStack.Count > 1)
+        if (Application.Current.MainPage is Shell shell)
         {
-            await shell.Navigation.PopAsync();
+            var currentPage = shell.CurrentPage;
+
+            if (currentPage?.Navigation != null)
+            {
+                // Push the new page
+                await currentPage.Navigation.PushAsync(new PopUpPage2("From pop"));
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Navigation not available.", "OK");
+            }
         }
     }
+
+    // private async Task PopPage()
+    // {
+    //     if (Application.Current.MainPage is Shell shell)
+    //     {
+    //         // Get the current visible page
+    //         var currentPage = shell.CurrentPage;
+
+    //         if (currentPage?.Navigation?.NavigationStack?.Count > 1)
+    //         {
+    //             await currentPage.Navigation.PopAsync();
+    //         }
+    //         else
+    //         {
+    //             // Optional: Handle case where there's no page to pop
+    //             await Application.Current.MainPage.DisplayAlert("Notice", "No page to pop.", "OK");
+    //         }
+    //     }
+    // }
 
     private async Task GoToPopUp()
     {
         var shell = Application.Current.MainPage as Shell;
         if (shell != null)
         {
-            // Navigate using Shell route
-            await shell.GoToAsync("popup");
+            // Navigation with Shell route + parameter
+            var route = $"popup?message={Uri.EscapeDataString("Hello from GoToAsync!")}";
+            await shell.GoToAsync(route);
         }
     }
 }
