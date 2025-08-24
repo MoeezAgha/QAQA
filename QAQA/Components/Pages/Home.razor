@@ -6,6 +6,7 @@
 <button @onclick="PopPage">Pop Page</button>
 <button @onclick="GoToPopUp">GoTo PopUp (Route)</button>
 
+<button @onclick="GoToPopUpGeneric">GoTo GoToPopUpGeneric (Route)</button>
 @code {
     private async Task PushPopUp()
     {
@@ -55,7 +56,16 @@
     //         }
     //     }
     // }
+    private async Task GoToPopUpGeneric()
+    {
+        var popup = new GenericPopUpPage(
+     blazorComponentType: typeof(PopUp),
+     parameters: new Dictionary<string, object> { { "Message", "Hello from Home!" } }
+ );
 
+        await Shell.Current.Navigation.PushAsync(popup);
+
+    }
     private async Task GoToPopUp()
     {
         var shell = Application.Current.MainPage as Shell;

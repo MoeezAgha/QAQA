@@ -2,6 +2,7 @@
 <p>Message: @Message</p>
 
 <button @onclick="GoBack">Go Back</button>
+<button @onclick="GoToPopUpGeneric">GoTo GoToPopUpGeneric (Route)</button>
 
 @code {
     [Parameter]
@@ -15,4 +16,15 @@
             await shell.Navigation.PopAsync();
         }
     }
+    private async Task GoToPopUpGeneric()
+    {
+        var popup = new GenericPopUpPage(
+     blazorComponentType: typeof(PopUp),
+     parameters: new Dictionary<string, object> { { "Message", "Hello fro222m Home!" } }
+ );
+
+        await Shell.Current.Navigation.PushAsync(popup);
+
+    }
+
 }

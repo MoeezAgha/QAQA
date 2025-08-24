@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-using Microsoft.Maui.Controls;
-
-namespace QAQA.Components.Pages;
+﻿namespace QAQA.Components.Pages;
 
 using Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components.WebView.Maui;
